@@ -1,0 +1,1 @@
+This files are built from [this tutorial](https://www.youtube.com/watch?v=YdgIWTYQ69A) on using .env files to hide API keys and other credentials.
