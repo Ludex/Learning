@@ -1,0 +1,22 @@
+# Explore the "People" and "Petitions_Signed" tabs. Can you describe the relationship between the "People" tab and the "Petitions_Signed" Tabs. Put your answer in O8 to the right with as much detail as possible.
+										
+People table contains personal information specific to each petition respondent with summaries on their interactions. Petition table contains details of each petition signed by each respondent. The relationship between these two tables in a one(People) to many(Petition) relationship with PersonId as the primary key.
+
+# Can you write a SQL/R/Python statement that would clean the "Zip" Field in the "People" tab based on United States Zip Code formatting. Below your statement can you describe how you arrived at the answer. Put your answer in O9 to the right. 												
+
+The US Zip Code is in a 5-digit format. From my review, I noted that:
+(a) Some entries had less than five digits, to which I prefixed 0s
+(b) Some entries had more than five digits for which I picked the first five digits. This seemed accurate for the sample reviewed given the matching area codes.
+
+# Can you write a  SQL/R/Python statement that would merge the  "People" and "Petitions_Signed" tabs so that each row of "Petitions_Signed" also has total fields from the "People" Tab. Below your statement can you describe how you arrived at the answer. Put your answer in O10 to the right. 												
+With Petition_Signed as the primary table, I applied a left join to the People table using PersonId as the common field.
+
+# Your team is purchasing a new software platform that does peer to peer sms text messaging. Your boss asks to you to make sure all sms text data is stored and connected back to the people who received and sent the texts in your central database.  The platform you are purchasing does not already have a built in data connector that connects to your existing central database. Can you describe in detail the steps you would take to integrate a new source of data to your existing data structure? Talk about about the technical next steps as well how you would work with the people involved in arriving at your solution.  Put your answer in O11 to the right. 												
+
+
+
+# People across your organization are creating petition forms to be posted online. There is a standard naming convention to ensure that all petitions can later be parsed out into the correct categories (geography, issue area, department) but you are finding that many petition names are coming into the data incorrectly (wrong formatting, wrong spelling, wrong departments). Your bosses who are looking at live dashboards are realizing the final numbers by category look incorrect becasue of these formatting errors. They ask you to to find a solution. Talk about about the technical next steps as well how you would work with the people involved in arriving at your solution.  Put your answer in O12 to the right. 												
+Data Standardization - I would develop a coding of the petition categories, so as to expect distinct codes as opposed to open text entry. I would then communicate the codes to the people creating the petition forms with a mapping reference and train them accordingly on their use. Once in use, I would use the codes and mapping reference to map the respective categories back to the data for dashboard viewing and interpretation.
+
+# Across the organization's data infrastructure there are many places where errors can occur daily. For example a data pipeline may have broken last night, data may be not coming in with the right formatting, there may be duplicate data records, there may be missing data in important fields. Can you describe how you would set up a data error monitoring process so that you can catch these errors daily as well as prevent these errors in the future. Put your answer in O13 to the right. 												
+Data Quality Infrastructure - I would include a staging layer (data lake) to hold the raw data with no constraints on the source data. I would then build a data validation ETL that runs iteratively undertaking completeness, validity and uniqueness checks on the staged data at an interval, focusing only on fresh sets of data and making comparisons against fact and dimension tables set up in the data warehouse. This process would migrate data subset that passes these checks and generate an exceptions report for review of errors. Root cause analysis of these issues will result in issue prevention and process improvement measures hence improve the overall data quality. 
