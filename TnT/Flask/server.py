@@ -12,7 +12,7 @@ app.add_api('swagger.yml')
 def home():
     '''
     This function just responds to the browser URL localhost:5000/
-
+    
     '''
     return render_template("home.html")
 

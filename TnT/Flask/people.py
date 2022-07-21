@@ -1,6 +1,5 @@
 from datetime import datetime
 from os import abort
-
 from flask import make_response
 
 def get_timestamp():
@@ -36,6 +35,9 @@ def read_all():
 def read_one(lname):
     '''
     This function responds to a request for /api/people/{lname} with one person matching from people
+    
+    :param lname:   last name of person to find
+    :return:        person matching last name
     '''
 
     if lname in PEOPLE:
@@ -47,6 +49,9 @@ def read_one(lname):
 def create(person):
     '''
     This function creates a new person in the people structure based on the passed-in person's data
+    
+    :param person:  person to create in people structure
+    :return:        201 on success, 406 on person exists
     '''
     lname = person.get("lname", None)
     fname = person.get("fname", None)
@@ -70,6 +75,10 @@ def create(person):
 def update(lname, person):
     '''
     This function updates an existing person in the people structure
+    
+    :param lname:   last name of person to update in the people structure
+    :param person:  person to update
+    :return:        updated person structure
     '''
     if lname in PEOPLE:
         PEOPLE[lname]["fname"] = person.get("fname")
@@ -87,6 +96,10 @@ def update(lname, person):
 def delete(lname):
     '''
     This function updates an existing person in the people structure
+    
+    
+    :param lname:   last name of person to delete
+    :return:        200 on successful delete, 404 if not found
     '''
     if lname in PEOPLE:
         del(PEOPLE[lname])
